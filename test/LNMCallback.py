@@ -7,7 +7,7 @@ import json
 from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
-run_with_ngrok(app)
+# run_with_ngrok(app)
 
 
 def getToken():
@@ -35,7 +35,7 @@ def checkout():
         "PartyA": "254791802040",
         "PartyB": "174379",
         "PhoneNumber": "254791802040",
-        "CallBackURL": "http://b4f17ae728e2.ngrok.io",
+        "CallBackURL": "https://0638ff582f8c.ngrok.io/",
         "AccountReference": "Test",
         "TransactionDesc": "Test"
     }
@@ -43,7 +43,7 @@ def checkout():
     response = requests.post(api_url, json=request, headers=headers)
 
     print(response.text)
-    return str(response)
+    return response.text
 
 
 @app.route("/", methods=['POST', 'GET'])
@@ -66,4 +66,5 @@ def callback():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', debug=True)
+    # app.run('0.0.0.0', debug=True)
+    app.run('127.0.0.1', port=80, debug=True)
